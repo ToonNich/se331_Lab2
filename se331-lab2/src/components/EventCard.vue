@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import Event from '@/types/Event';
 import { ref } from 'vue';
+import Event from '@types/Event';
 defineProps<{
- msg: string
+  event: Event
 }>()
 
 // const event = ref ({
@@ -20,9 +20,9 @@ defineProps<{
 </script>
 
 <template>
-  <div class ="event-class">
+  <div class="event-class">
     <div class="event-card">
-      <h2>{{event.title}}</h2>
+      <h2>{{ event.title }}</h2>
       <span>@{{ event.time }} on {{ event.date }}</span>
     </div>
   </div>

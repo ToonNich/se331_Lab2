@@ -3,8 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-<div id="layout"> 
-  <RouterView />
+  <div id="layout">
     <header>
       <div class="wrapper">
         <nav>
@@ -13,27 +12,12 @@ import { RouterLink, RouterView } from 'vue-router'
         </nav>
       </div>
     </header>
-  <RouterView />
-</div>
+    <RouterView />
+  </div>
 </template>
 
 <style>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
 #layout {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smooting: antialiased;
@@ -45,6 +29,8 @@ nav {
 
 nav {
   padding: 30px;
+  font-weight: bold;
+  color: #2c3e50;
 }
 
 nav a {
