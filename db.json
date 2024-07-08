@@ -32,6 +32,17 @@
       "time": "11:00",
       "petsAllowed": false,
       "organizer": "Carey Wales"
+    } ,
+    {
+      "id": 1234567,
+      "category": "A",
+      "title": "Number",
+      "description": "Help mo pls.",
+      "location": "CMU",
+      "date": "November 22, 2022",
+      "time": "13:00",
+      "petsAllowed": false,
+      "organizer": "Baiyor"
     }
   ]
 }
