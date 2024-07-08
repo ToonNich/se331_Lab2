@@ -1,9 +1,21 @@
 <script setup lang="ts">
 import EventCard from '@/components/EventCard.vue';
 import Event from '@/types/Event';
-import { ref } from 'vue';
+import { ref,onMounted } from 'vue';
+import axios from 'axios'
 
 const events = ref<Event[]>(null)
+
+onMounted(() => {
+  axios
+    .get('https://my-json-server.typicode.com/ToonNich/se331_Lab2/events')
+    .then((response) => {
+      console.log(response.data)
+    })
+    .catch((error) => {
+      console.error('There was an error!' , error)
+    })
+})
 // const events = ref<Event[]> ([
 //   {
 //     id: 5928101,
