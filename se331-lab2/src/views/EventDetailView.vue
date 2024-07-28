@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref , onMounted , defineProps } from 'vue'
 import Event from '@/types/Event'
-import EventService from '@/service/EventService'
+import EventService from '@/services/EventService';
 const event = ref<Event>(null)
 // const id = ref<number>(5928101)
 const props = defineProps({
@@ -12,10 +12,10 @@ const props = defineProps({
 })
 onMounted(() => {
     EventService.getEvent(props.id)
-        .then((response) => {
+        .then((response) => { 
             event.value = response.data
         })
-        .catch((error) => {
+        .catch((error) => { 
             console.error('There was an error!', error)
         })
 })
