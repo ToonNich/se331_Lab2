@@ -43,17 +43,6 @@
       "time": "13:00",
       "petsAllowed": false,
       "organizer": "Baiyor"
-    },
-    {
-      "id": 1111111,
-      "category": "B",
-      "title": "A",
-      "description": "Help mo pls.",
-      "location": "CAMT",
-      "date": "November 16, 2003",
-      "time": "16:00",
-      "petsAllowed": false,
-      "organizer": "Plm"
     }
   ]
 }
