@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref | onMounted } from 'vue'
+import { ref , onMounted } from 'vue'
 import Event from '@/types/Event'
 import EventService from '@/service/EventService'
 const event = ref<Event>(null)
