@@ -9,7 +9,13 @@ const props = defineProps<{
 
 const { event } = toRefs(props)
 
+const register = () => {
+    // If...
+    // Push...
+}
+
 </script>
 <template>
     <p>Register event here</p>
+    <button @click="register">Register</button>
 </template>
