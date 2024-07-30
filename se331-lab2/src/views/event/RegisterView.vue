@@ -15,9 +15,8 @@ const router = useRouter()
 const register = () => {
     // If...
     // Push...
+    router.push({ name: 'event-detail-view' })
 }
-
-router.push({ name: 'event-detail-view' })
 
 </script>
 <template>
