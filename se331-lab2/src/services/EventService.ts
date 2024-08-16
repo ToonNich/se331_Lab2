@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { type AxiosResponse } from 'axios'
 
 const apiClient = axios.create({
   baseURL: 'https://my-json-server.typicode.com/ToonNich/DataServer',
@@ -10,10 +10,10 @@ const apiClient = axios.create({
 })
 
 export default {
-  getEvents(perPage: Number, page: Number) {
+  getEvents(perPage: Number, page: Number): Promise<AxiosResponse<Event[]>> {
     return apiClient.get('/events?_limit=' + perPage + '&_page=' + page)
   },
-  getEvent(id: number) {
+  getEventById(id: Number): Promise<AxiosResponse<Event>> {
     return apiClient.get('/events/' + id)
   }
 }
