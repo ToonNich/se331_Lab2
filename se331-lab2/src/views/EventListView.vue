@@ -9,7 +9,7 @@ const events = ref<Event[] | null>(null)
 const totalEvents = ref(0)
 
 const hasNextPage = computed(() => {
-  const totalpages = Math.ceil(totalEvents.value / 2)
+  const totalpages = Math.ceil(totalEvents.value / 3)
   return page.value < totalpages
 })
 
@@ -23,7 +23,7 @@ const page = computed(() => props.page)
 
 watchEffect(() => {
   // events.value = null
-  EventService.getEvents(4, page.value)
+  EventService.getEvents(3, page.value)
     .then((response) => {
       events.value = response.data
       totalEvents.value = response.headers['x-total-count']
