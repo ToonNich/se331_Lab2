@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import EventCard from '@/components/EventCard.vue';
-import { type Event } from '@/types';
-import { ref, onMounted , computed , watchEffect} from 'vue';
-import EventService from '@/services/EventService';
+import EventCard from '@/components/EventCard.vue'
+import { type Event } from '@/types'
+import { ref, onMounted, computed, watchEffect } from 'vue'
+import EventService from '@/services/EventService'
 
 const events = ref<Event[] | null>(null)
 
@@ -29,36 +29,36 @@ watchEffect(() => {
       totalEvents.value = response.headers['x-total-count']
     })
     .catch((error) => {
-      console.error('There was an error!' , error)
+      console.error('There was an error!', error)
     })
 })
 </script>
 
 <template>
-    <h1>Events For Good</h1>
-    <!-- new element-->
-    <div class="events">
-      <EventCard v-for="event in events" :key="event.id" :event="event" />
-      <div class="pagination">
-        <RouterLink 
+  <h1>Events For Good</h1>
+  <!-- new element-->
+  <div class="events">
+    <EventCard v-for="event in events" :key="event.id" :event="event" />
+    <div class="pagination">
+      <RouterLink
         id="page-prev"
-        :to="{ name: 'event-list-view', query: { page:page -1 } }"
+        :to="{ name: 'event-list-view', query: { page: page - 1 } }"
         rel="prev"
-        v-if="page != 1">
-        &#60;
-        Prev Page
-        </RouterLink>
-
-        <RouterLink 
-        id="page-next"
-        :to="{ name: 'event-list-view', query: { page:page +1 } }"
-        rel="next"
-        v-if="hasNextPage">
-        Next Page
-        &#62;
+        v-if="page != 1"
+      >
+        &#60; Prev Page
       </RouterLink>
-      </div>
+
+      <RouterLink
+        id="page-next"
+        :to="{ name: 'event-list-view', query: { page: page + 1 } }"
+        rel="next"
+        v-if="hasNextPage"
+      >
+        Next Page &#62;
+      </RouterLink>
     </div>
+  </div>
 </template>
 
 <style scoped>

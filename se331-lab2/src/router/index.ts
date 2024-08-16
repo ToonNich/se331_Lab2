@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import EventListView from '@/views/EventListView.vue' 
+import EventListView from '@/views/EventListView.vue'
 import AboutView from '@/views/AboutView.vue'
 import EventDetailView from '@/views/event/DetailView.vue'
 import EventRegisterView from '@/views/event/RegisterView.vue'
@@ -15,38 +15,36 @@ const router = createRouter({
     {
       path: '/',
       name: 'event-list-view',
-      component: EventListView ,
-      props: (route) => ({ page: parseInt(route.query.page?.toString() || '1')})
+      component: EventListView,
+      props: (route) => ({ page: parseInt(route.query.page?.toString() || '1') })
     },
     {
       path: '/event/:id',
       name: 'event-layout-view',
       component: EventLayoutView,
-      props: true ,
+      props: true,
       children: [
-
         {
           path: ' ',
           name: 'event-detail-view',
-          component: EventDetailView ,
+          component: EventDetailView,
           props: true
         },
         {
           path: 'register',
           name: 'event-register-view',
-          component: EventRegisterView ,
+          component: EventRegisterView,
           props: true
         },
         {
           path: 'edit',
           name: 'event-edit-view',
-          component: EventEditView ,
+          component: EventEditView,
           props: true
         }
-
       ]
     },
-    
+
     {
       path: '/about',
       name: 'about',
@@ -54,19 +52,19 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       // component: () => import('../views/AboutView.vue')
-      component : AboutView
+      component: AboutView
     },
     {
       path: '/404/:resource',
       name: '404-resource',
-      component: NotFoundView ,
+      component: NotFoundView,
       props: true
     },
     {
-    path: '/network-error',
-    name: 'network-error-view',
-    component: NetworkErrorView ,
-    props: true
+      path: '/network-error',
+      name: 'network-error-view',
+      component: NetworkErrorView,
+      props: true
     },
     {
       path: '/:catchAll(.*)',

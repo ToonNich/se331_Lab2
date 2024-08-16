@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import StudentCard from '@/components/StudentCard.vue'
-import Student  from '@types/Student';
-import { ref,onMounted } from 'vue';
-import StudentService from '@/services/StudentService';
+import Student from '@types/Student'
+import { ref, onMounted } from 'vue'
+import StudentService from '@/services/StudentService'
 
 const students = ref<Student[]>(null)
 
@@ -12,10 +12,9 @@ onMounted(() => {
       students.value = response.data
     })
     .catch((error) => {
-      console.error('There was an error!' , error)
+      console.error('There was an error!', error)
     })
 })
-
 </script>
 
 <template>
