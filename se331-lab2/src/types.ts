@@ -3,7 +3,7 @@ export interface MessageState {
 }
 
 export interface EventState {
-  message: Event | null
+  event: Event | null
 }
 
 export interface Event {
