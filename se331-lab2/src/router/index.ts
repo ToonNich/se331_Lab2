@@ -98,7 +98,14 @@ const router = createRouter({
       name: 'student',
       component: StudentView
     }
-  ]
+  ],
+  scrollBehavior(to, from,savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else { 
+      return { top:0 }
+     }
+  }
 })
 
 router.beforeEach(() => {
