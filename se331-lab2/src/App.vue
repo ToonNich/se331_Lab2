@@ -65,4 +65,5 @@ h2 {
 #flashMessage {
   animation: yellofade 3s ease-in-out;
 }
+
 </style>
