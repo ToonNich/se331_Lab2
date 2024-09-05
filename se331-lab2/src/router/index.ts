@@ -1,15 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import EventListView from '@/views/EventListView.vue'
 import AboutView from '@/views/AboutView.vue'
-import EventDetailView from '@/views/event/DetailView.vue'
-import EventRegisterView from '@/views/event/RegisterView.vue'
-import EventEditView from '@/views/event/EditView.vue'
-import EventLayoutView from '@/views/event/LayoutView.vue'
-import NotFoundView from '@/views/์NotFoundView.vue'
+import StudentView from '@/views/StudentView.vue'
+import DetailView from '../views/event/DetailView.vue'
+import EditView from '@/views/event/EditView.vue'
+import RegisterView from '@/views/event/RegisterView.vue'
+import LayoutView from '@/views/event/LayoutView.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
 import NetworkErrorView from '@/views/NetworkErrorView.vue'
 import nProgress from 'nprogress'
 import EventService from '@/services/EventService'
-import StudentView from '@/views/StudentView.vue'
 import { useEventStore } from '@/stores/event'
 
 const router = createRouter({
@@ -19,73 +19,87 @@ const router = createRouter({
       path: '/',
       name: 'event-list-view',
       component: EventListView,
-      props: (route) => ({ page: parseInt(route.query.page?.toString() || '1') })
+      props: (route) => ({page: parseInt(route.query?.page as string || '1'), size: parseInt(route.query?.page as string || '2')  })
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: AboutView
+    },
+    {
+      path: '/student',
+      name: 'student',
+      component: StudentView
+    },
+    {
+      path: '/event/:id',
+      name: 'event-detail-view',
+      component: DetailView
+
+    },
+    {
+      path: '/event/:id/register',
+      name: 'event-register-view',
+      component: RegisterView
+
+    },
+    {
+      path: '/event/:id/edit',
+      name: 'event-edit-view',
+      component: EditView
+
     },
     {
       path: '/event/:id',
       name: 'event-layout-view',
-      component: EventLayoutView,
+      component: LayoutView,
       props: true,
       beforeEnter: (to) => {
-        //put API call here
         const id = parseInt(to.params.id as string)
         const eventStore = useEventStore()
-          return EventService.getEventById(id)
-          .then ((response) => {
-            //need to setup the data for the event
-            eventStore.setEvent(response.data)
-          }).catch((error) => {
-            if (error.response && error.response.status === 404) {
-              return {
-                name: '404-resource-view',
-                params: { resoure: 'event' }
-              }
-            } else {
-              return { name: 'network-error-view' }
+        return EventService.getEvent(id)
+        .then((response) => {
+          //need to setup the data for the event
+          eventStore.setEvent(response.data)
+        })
+        .catch((error) => {
+          if(error.response && error.response.status === 404){
+            return {
+              name: '404-resource-view',
+              params: { resource: 'event'}
             }
-          })
+          } else{
+            return { name: 'network-error-view'}
+          }
+        })
       },
       children: [
         {
-          path: ' ',
+          path: '',
           name: 'event-detail-view',
-          component: EventDetailView,
+          component: DetailView,
+          props: true,
+        },
+        {
+          path: 'edit',
+          name: 'event-edit-view',
+          component:EditView,
           props: true
         },
         {
           path: 'register',
           name: 'event-register-view',
-          component: EventRegisterView,
-          props: true
-        },
-        {
-          path: 'edit',
-          name: 'event-edit-view',
-          component: EventEditView,
+          component: RegisterView,
           props: true
         }
-      ]
-    },
 
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // component: () => import('../views/AboutView.vue')
-      component: AboutView
+      ]
+      
     },
     {
       path: '/404/:resource',
-      name: '404-resource',
+      name: '404-resource-view',
       component: NotFoundView,
-      props: true
-    },
-    {
-      path: '/network-error',
-      name: 'network-error-view',
-      component: NetworkErrorView,
       props: true
     },
     {
@@ -94,23 +108,22 @@ const router = createRouter({
       component: NotFoundView
     },
     {
-      path: '/student',
-      name: 'student',
-      component: StudentView
+      path: '/network-error',
+      name: 'network-error-view',
+      component: NetworkErrorView
     }
   ],
-  scrollBehavior(to, from,savedPosition) {
-    if (savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
+    if(savedPosition){
       return savedPosition
-    } else { 
-      return { top:0 }
-     }
+    } else{
+      return { top: 0 }
+    }
   }
 })
 router.beforeEach(() => {
   nProgress.start()
 })
-
 router.afterEach(() => {
   nProgress.done()
 })

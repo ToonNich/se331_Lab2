@@ -1,27 +1,33 @@
 <script setup lang="ts">
-import { toRefs, defineProps } from 'vue'
+import{toRefs, defineProps} from 'vue'
 import { type Event } from '@/types'
+import { useMessageStore } from '@/stores/message'
+import { useRouter } from 'vue-router'
 
-import { useRouter } from 'vue-router';
-import { useMessageStore } from '@/stores/message';
-
+const store = useMessageStore()
+const router = useRouter()
 const props = defineProps<{
     event: Event
 }>()
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { event } = toRefs(props)
-const router = useRouter()
-const store = useMessageStore()
-const edit = () => {
-    store.updateMessage('You are succesfully update the data for ' + props.event.title)
-    setTimeout(() => {
-        store.resetMessage()
-    }, 3000)
-    router.push({ name: 'event-detail-view', params: { id: props.event.id } })
-}
 
+//eslint-disable-next-line @typescript-eslint/no-unused-vars
+const {event} = toRefs(props)
+
+const edit = () => {
+  store.updatedMessage('The data has been updated')
+  setTimeout(() => {
+    store.resetMessage()
+  }, 3000)
+  router.push({ name: 'event-edit-view', params: { id: props.event.id} })
+}
 </script>
 
 <template>
-  <button @click="edit">Edit</button>
+  <div class="text-center"> 
+    <p>Edit event here</p>
+  <button @click="edit">Edit Me!</button>
+  </div>
+    
+  
+  
 </template>
