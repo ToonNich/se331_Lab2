@@ -34,7 +34,7 @@ const event = ref<Event>({
     </div>
 </template>
 
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import type { Event } from "@/types";
 import { ref } from "vue";
 const event = ref<Event>({
@@ -95,4 +95,4 @@ const event = ref<Event>({
 
 
 
-
+ -->
