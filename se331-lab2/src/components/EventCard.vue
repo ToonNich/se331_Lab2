@@ -32,12 +32,12 @@ defineProps<{
 <template>
   <RouterLink class="event-link" :to="{name: 'event-detail-view', params:{id: event.id}}">
     <div class="event-class">
-      <div class="text-center cursor-pointer border border-gray-600 p-[20px] w-[250px] mb-[18px] hover:scale-101 hover:shadow-lg ">
+      <div class="text-center cursor-pointer border border-gray-600 p-[20px] w-[250px] mb-[18px] hover:scale-101 hover:shadow-sp ">
         <!-- p- implement padding (1rem=16px)
         w- windth of component
         mb- ระยะห่างด้านล่าง -->
         <h2>{{ event.title }}</h2>
-        <span>@{{ event.time }} on {{ event.date }}</span>       
+        <span>{{ event.category }} @ {{ event.location }}</span>       
       </div>
     </div>
   </RouterLink>
